@@ -16,12 +16,12 @@ counts:(!) . flip (	(`trade;1000000);
 
 // The number of distinct values in any columns with a g attribute
 // assumption here is that grouping will be on sym only
-params:.Q.def[(`distincts`avgstrlen)!1 1].Q.opt .z.x
+params:.Q.def[(`distincts`avgsl)!1 1].Q.opt .z.x
 distincts:params[`distincts]
 
 // The average length of a string field
 // all untyped () columns are strings
-avgstrlength:params[`avgstrlen]
+avgstrlength:params[`avgsl]
 
 // Display table names, schemas and counts in the output
 f:{-1"Loading schema for quote (10 million rows):\n"; show x;-1"\ntrade (1 million rows): \n"; show y; -1"\nand the table t that we defined above.\n"; show z; -1"Assuming 100000 distinct values.";}[quote;trade;t]

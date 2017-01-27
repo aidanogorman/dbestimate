@@ -1,12 +1,12 @@
 // Script to estimate the memory usage of a process based on supplied table schemas and table counts
 /
 Usage: Call script and pass in a schema file as comandline parameter
-    e.g. q memusage.q path/to/schema.q 
+    e.g. q memusage.q path/to/schema.q -distincts x -avgsl y
 
 Once loaded inspect the memsage dictionary for an estimate of memory usage for each table
     q)memusage[]
-    quote| 59680
-    trade| 5280
+    quote| 596
+    trade| 53
 \
 
 // Load schema file
@@ -32,7 +32,7 @@ typesize:{4^0N 1 16 0N 1 2 4 8 4 8 1 8 8 4 4 8 8 4 4 4 abs type x};
 tablesize:{[t;c] vectorsize[cols t;count cols t] + sum vectorsize[;c] each value flip t:0!t};
 
 // Calculate table sizes
-dbestimate:{cnts:tables[]#counts;
+dbestimate:{
 	-1"\nSize per table in MB:"; 
 	show r:(key counts)!`long$(tablesize'[value each key counts;value counts])%2 xexp 20;
 	
