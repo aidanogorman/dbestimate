@@ -13,5 +13,5 @@ counts:(!) . flip (	(`trade;1000000);
 			(`t;1000000))
 
 // Display table names, schemas and counts in the output
-f:{-1"Loading schema for quote:\n"; show x;-1"\ntrade: \n"; show y; -1"\nand the table t that we defined above.\n"; show z;}[quote;trade;t]
-f[]
+f:{-1"Loading schema for ", string x; show value x;-1"\n"}'[key counts]
+f[];
