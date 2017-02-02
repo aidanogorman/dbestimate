@@ -54,9 +54,9 @@ tablesize:{[t;c] vectorsize[cols t;count cols t] + sum vectorsize[;c] each value
 // Calculate table sizes
 dbestimate:{
 	-1"\nSize per table in MB:"; 
-	show r:(key counts)!`long$(tablesize'[value each key counts;value counts])%2 xexp 20;
+	show r:([tbl:key counts] counts:value counts; size:`long$(tablesize'[value each key counts;value counts])%2 xexp 20);
 	
 	-1"Total size in MB:";
-	show sum r;}
+	show sum exec size from r;}
 
 dbestimate[]

@@ -13,6 +13,5 @@ counts:(!) . flip (	(`trade;1000000);
 			(`t;1000000))
 
 // Display table names, schemas and counts in the output
-f:{-1"Loading schema for quote (10 million rows):\n"; show x;-1"\ntrade (1 million rows): \n"; show y; -1"\nand the table t that we defined above.\n"; show z; -1"Assuming 100000 distinct values.";}[quote;trade;t]
+f:{-1"Loading schema for quote:\n"; show x;-1"\ntrade: \n"; show y; -1"\nand the table t that we defined above.\n"; show z;}[quote;trade;t]
 f[]
-
