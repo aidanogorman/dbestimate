@@ -11,7 +11,7 @@ Once loaded inspect the memsage dictionary for an estimate of memory usage for e
 
 // Defining command line parameters. Inputs are the schema of tables to estimate, number of distinct values
 // and the average string length of string/untyped columns
-params:.Q.def[(`schema`distincts`avgsl)!(`schema; 10000; 15)].Q.opt .z.x
+params:.Q.def[`schema`distincts`avgsl!(`schema; 10000; 15)].Q.opt .z.x
 
 // Count any tables already loaded
 tblcnt:count tables[]
@@ -21,6 +21,10 @@ tblcnt:count tables[]
 
 // Checks if schema file has defined any tables
 if[0=(count tables[])-tblcnt; -2"Error: No tables defined in schema file, exiting script"; exit 2]
+
+// Display table names, schemas and counts in the output
+displayschema:{-1"Loading schema for: ", string x; show value x;-1"\n"}'[key counts]
+displayschema[];
 
 // Global Guesstimates
 
