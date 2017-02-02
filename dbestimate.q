@@ -9,8 +9,22 @@ Once loaded inspect the memsage dictionary for an estimate of memory usage for e
     trade| 53
 \
 
+// Defining command line parameters. Inputs are the schema of tables to estimate, number of distinct values
+// and the average string length of string/untyped columns
+params:.Q.def[(`schema`distincts`avgsl)!(`schema.q; 10000; 15)].Q.opt .z.x
+
 // Load schema file
-system"l ",.z.x[0];
+system"l ",string params[`schema];
+
+// Global Guesstimates
+
+// The number of distinct values in any columns with a g attribute
+// assumption here is that grouping will be on sym only
+distincts:params[`distincts]
+
+// The average length of a string field
+// all untyped () columns are strings
+avgstrlength:params[`avgsl]
 
 // (16 bytes + attribute overheads + raw size) to the nearest power of 2
 // c = row count
